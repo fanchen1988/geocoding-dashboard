@@ -1,3 +1,6 @@
+const chartUrl = '/chart/';
+const genericDataUrl = '/generic/data';
+
 export default function (app) {
 
   app.get('/', (req, res, next) => {
@@ -5,7 +8,7 @@ export default function (app) {
   });
 
   app.get('/generic', (req, res, next) => {
-    res.send('generic');
+    res.render('generic', {chartUrl, genericDataUrl});
   });
 
   app.get('/generic/data', (req, res, next) => {

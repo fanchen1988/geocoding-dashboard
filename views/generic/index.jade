@@ -1,0 +1,15 @@
+extend ../layout
+
+block head-addition
+  include assets
+
+block body-block
+  #genericBody
+
+block body-addition
+  #genericStorage.hide(chart-url=chartUrl, generic-data-url=genericDataUrl)
+
+  script.
+    $(window).load(function() {
+      loadPage();
+    });

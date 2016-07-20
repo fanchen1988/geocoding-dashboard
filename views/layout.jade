@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title= "Geocoding Dashboard"
+    include assets
+    block head-addition
+  body
+    .navbar.navbar-fixed-top.navbar-inverse
+      .navbar-inner
+        .container-fluid
+          include header
+
+    .container-fluid(style="margin-top: 80px")
+      #geocodingBody
+        block body-block
+      block body-addition
