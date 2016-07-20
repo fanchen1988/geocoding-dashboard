@@ -6,7 +6,8 @@ class GridLoader {
 
   setInitConfig() {
     this.width = '100%';
-    this.height = '400px';
+    this.height = '500px';
+    this.sorting = true;
     this.autoload = true;
     this.fields = [];
   }
@@ -19,6 +20,7 @@ class GridLoader {
     return {
       width: this.width,
       height: this.height,
+      sorting: this.sorting,
       autoload: this.autoload,
       controller: this.getController(),
       fields: this.getFields()

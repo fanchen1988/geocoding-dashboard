@@ -1,5 +1,5 @@
 import * as path from 'path';
-import * as lib from '../lib';
+import {getGeosummarizerData} from '../lib';
 
 const chartUrl = '/chart/';
 
@@ -53,7 +53,9 @@ export default function (app) {
   app.get('/evaluation/:source/data', (req, res, next) => {
     let source = req.params.source;
     console.log('Request on', source, 'data');
-    res.send(lib.clients);
+    getGeosummarizerData((err, rows) => {
+      res.send(JSON.stringify(rows));
+    });
   });
 }
 

@@ -7,12 +7,14 @@ class GeosummarizerGrid extends GridLoader {
 
   getFields() {
     return [
-      { name: "Name", type: "text", width: 150, validate: "required" },
-      { name: "Age", type: "number", width: 50 },
-      { name: "Address", type: "text", width: 200 },
-      //{ name: "Country", type: "select", items: countries, valueField: "Id", textField: "Name" },
-      { name: "Married", type: "checkbox", title: "Is Married", sorting: false },
-      { type: "control" }
+      { name: "Country", type: "text", width: 30, validate: "required" },
+      { name: "Tier", type: "number", width: 20 },
+      { name: "Version", type: "text", width: 30 },
+      { name: "Geosummarizer Accuracy", type: "number", width: 100 },
+      { name: "Good Geosummarizer Rate", type: "number", width: 100 },
+      { name: "Ideal Input Rate", type: "number", width: 80 },
+      { name: "Ideal Input Standard Deviation", type: "number", width: 120 },
+      { name: "Input Accuracy", type: "number", width: 80 },
     ];
   }
 
