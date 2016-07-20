@@ -1,0 +1,15 @@
+extend ../layout
+
+block head-addition
+  include assets
+
+block body-block
+  #geosummarizerBody
+
+block body-addition
+  #geosummarizerStorage.hide(geosummarizer-data-url=geosummarizerDataUrl)
+
+  script.
+    $(window).load(function() {
+      loadPage();
+    });
