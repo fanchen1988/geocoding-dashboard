@@ -1,18 +1,31 @@
-import sheetRouter from './report-sheet';
-import chartRouter from './report-chart';
-
 export default function (app) {
 
   app.get('/', (req, res, next) => {
-    res.redirect('/list');
+    res.redirect('/generic');
   });
 
-  app.get('/list', (req, res, next) => {
-    res.send('This is list');
+  app.get('/generic', (req, res, next) => {
+    res.send('generic');
   });
 
-  app.use('/sheet', sheetRouter());
+  app.get('/generic/data', (req, res, next) => {
+    res.send('generic data');
+  });
 
-  app.use('/chart', chartRouter());
+  app.get('/chart/:countryCode', (req, res, next) => {
+    res.send(req.params.countryCode);
+  });
+
+  app.get('/chart/:countryCode/data', (req, res, next) => {
+    res.send(req.params.countryCode);
+  });
+
+  app.get('/evaluation/:source', (req, res, next) => {
+    res.send(req.params.source);
+  });
+
+  app.get('/evaluation/:source/data', (req, res, next) => {
+    res.send(req.params.source);
+  });
 }
 
