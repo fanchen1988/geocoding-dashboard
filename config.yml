@@ -1,0 +1,2 @@
+mongo:
+  server: [['localhost', 27017]]
