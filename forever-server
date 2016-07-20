@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+supervisor -e 'js' -w 'app.js,routes,lib' index.js
+
