@@ -1,5 +1,5 @@
 import * as path from 'path';
-import {getGeosummarizerData} from '../lib';
+import {getGeosummarizerData, getGeneralDataEachCountry} from '../lib';
 
 const chartUrl = '/chart/';
 
@@ -18,7 +18,9 @@ export default function (app) {
   });
 
   app.get('/generic/data', (req, res, next) => {
-    res.send(lib.clients);
+    getGeneralDataEachCountry((err, results) => {
+      res.send(results);
+    });
   });
 
   app.get('/chart', (req, res, next) => {
