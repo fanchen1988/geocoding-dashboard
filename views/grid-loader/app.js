@@ -23,12 +23,17 @@ class GridLoader {
       sorting: this.sorting,
       autoload: this.autoload,
       controller: this.getController(),
+      rowRenderer: this.getRowRenderer(),
       fields: this.getFields()
     }
   }
 
   getController() {
     return {loadData: this.getDataLoader()};
+  }
+
+  getRowRenderer() {
+    return null;
   }
 
   getDataLoader() {
@@ -49,4 +54,13 @@ class GridLoader {
       deferred.resolve(data);
     };
   }
+
+  setCustomizedField(fieldCfg, customizeName) {
+    let customizedField = function(config) {
+      jsGrid.Field.call(this, config);
+    };
+    customizedField.prototype = new jsGrid.Field(fieldCfg);
+    jsGrid.fields[customizeName] = customizedField;
+  }
 }
+
