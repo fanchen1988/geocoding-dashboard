@@ -1,0 +1,15 @@
+extend ../layout
+
+block head-addition
+  include assets
+
+block body-block
+  canvas#chartBody(width='400', height='160')
+
+block body-addition
+  #chartStorage.hide(chart-data-url=chartDataUrl)
+
+  script.
+    $(window).load(function() {
+      loadPage();
+    });

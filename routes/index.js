@@ -21,6 +21,10 @@ export default function (app) {
     res.send(lib.clients);
   });
 
+  app.get('/chart', (req, res, next) => {
+    res.render('chart-loader');
+  });
+
   app.get('/chart/:countryCode', (req, res, next) => {
     res.send(req.params.countryCode);
   });
