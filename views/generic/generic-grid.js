@@ -12,7 +12,7 @@ class GenericGrid extends GridLoader {
         return $('<a href="/chart/' + item.countryCode.toString() + '", target="_blank">' + value.toString() + '</a>');
       }
     };
-    this.setCustomizedField(urlFieldConfig, urlFieldName);
+    this.setCustomizedField(urlFieldName, urlFieldConfig);
 
     let accuracyFieldName = 'accuracyField';
     let accuracyFieldConfig = {
@@ -24,7 +24,7 @@ class GenericGrid extends GridLoader {
         return result;
       }
     };
-    this.setCustomizedField(accuracyFieldConfig, accuracyFieldName);
+    this.setCustomizedField(accuracyFieldName, accuracyFieldConfig);
 
     return [
       {name: 'country', title: "Country", type: urlFieldName, align: 'left', width: 40},

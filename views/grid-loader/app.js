@@ -13,7 +13,7 @@ class GridLoader {
         return Math.round(value * roundFixed) / roundFixed;
       }
     };
-    this.setCustomizedField(numFieldConfig, numFieldName);
+    this.setCustomizedField(numFieldName, numFieldConfig);
   }
 
   setInitConfig() {
@@ -76,7 +76,7 @@ class GridLoader {
     };
   }
 
-  setCustomizedField(fieldCfg, customizeName) {
+  setCustomizedField(customizeName, fieldCfg) {
     let customizedField = function(config) {
       jsGrid.Field.call(this, config);
     };
