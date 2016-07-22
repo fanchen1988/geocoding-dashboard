@@ -9,7 +9,7 @@ class GenericGrid extends GridLoader {
     let urlFieldName = 'urlField';
     let urlFieldConfig = {
       itemTemplate: function(value, item) {
-        return $('<a href="/chart/' + item.countryCode.toString() + '">' + value.toString() + '</a>');
+        return $('<a href="/chart/' + item.countryCode.toString() + '", target="_blank">' + value.toString() + '</a>');
       }
     };
     this.setCustomizedField(urlFieldConfig, urlFieldName);
