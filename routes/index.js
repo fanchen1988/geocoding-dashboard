@@ -1,13 +1,17 @@
 import * as path from 'path';
 import {
   getGeosummarizerData, getGeneralDataEachCountry,
-  getRecentGeocodingData
+  getRecentGeocodingData, kickOffRun
 } from '../lib';
 
 const chartUrl = '/chart/';
 
 function getDataUrl(req) {
   return path.join(req.originalUrl, 'data');
+}
+
+function getRunUrl(req) {
+  return path.join('/run', req.originalUrl);
 }
 
 export default function (app) {
@@ -51,6 +55,7 @@ export default function (app) {
       case 'geosummarizer':
         renderPath = 'geosummarizer';
         pageConfig.geosummarizerDataUrl = getDataUrl(req);
+        pageConfig.geosummarizerRunUrl = getRunUrl(req);
         break;
       default:
         error = new Error(`Found no Evaluation Source ${source}`);
@@ -66,9 +71,37 @@ export default function (app) {
   app.get('/evaluation/:source/data', (req, res, next) => {
     let source = req.params.source;
     console.log('Request on', source, 'data');
-    getGeosummarizerData((err, rows) => {
-      res.send(JSON.stringify(rows));
-    });
+    let error = null;
+    let data = null;
+    switch (source) {
+      case 'geosummarizer':
+        getGeosummarizerData((err, rows) => {
+          if (err) {
+            res.status(404).send(err.toString());
+          } else {
+            res.send(JSON.stringify(rows));
+          }
+        });
+        break;
+      default:
+        res.status(404).send(`Found no Evaluation Source ${source}`);
+        break;
+    }
+  });
+
+  app.post('/run/evaluation/:source/', (req, res, next) => {
+    let source = req.params.source;
+    switch (source) {
+      case 'geosummarizer':
+        let data = req.body;
+        kickOffRun(data.countryCode, data.dataset, data.runVersion, (err, taskId) => {
+          res.send(taskId);
+        });
+        break;
+      default:
+        error = new Error(`Found no Evaluation Source ${source}`);
+        break;
+    }
   });
 }
 
