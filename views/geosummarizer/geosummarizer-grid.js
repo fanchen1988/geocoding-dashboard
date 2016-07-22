@@ -7,7 +7,7 @@ class GeosummarizerGrid extends GridLoader {
 
   getFields() {
     return [
-      { name: 'country', title: "Country", type: "text", width: 30, validate: "required" },
+      { name: 'countryName', title: "Country", type: "text", width: 30, validate: "required" },
       { name: 'tier', title: "Tier", type: "number", width: 20 },
       { name: 'version', title: "Version", type: "text", width: 30 },
       { name: 'geosumAccuracy', title: "Geosummarizer Accuracy", type: "number", width: 100 },
