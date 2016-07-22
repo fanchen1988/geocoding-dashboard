@@ -29,7 +29,7 @@ class GridLoader {
   }
 
   getJsGridConfig() {
-    return {
+    let gridConfig = {
       width: this.width,
       height: this.height,
       sorting: this.sorting,
@@ -38,6 +38,7 @@ class GridLoader {
       rowRenderer: this.getRowRenderer(),
       fields: this.getFields()
     }
+    return $.extend(gridConfig, this.getCustomizedConfig());
   }
 
   getController() {
@@ -45,6 +46,14 @@ class GridLoader {
   }
 
   getRowRenderer() {
+    return null;
+  }
+
+  getCustomizedConfig() {
+    return null;
+  }
+
+  getOnDataLoaded() {
     return null;
   }
 

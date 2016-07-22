@@ -27,16 +27,16 @@ class GenericGrid extends GridLoader {
     this.setCustomizedField(accuracyFieldConfig, accuracyFieldName);
 
     return [
-      {name: 'country', title: "Country", type: urlFieldName, width: 40},
-      {name: 'tier', title: "Tier", type: "number", width: 18},
-      {name: 'version', title: "Version", type: "text", width: 25},
-      {name: 'density', title: "Geo Density", type: "number", width: 40},
-      {name: 'accuracy', title: "Geo Accuracy", type: accuracyFieldName, width: 45},
-      {name: 'goal', title: "Goal", type: "number", width: 20},
-      {name: 'comprehensiveness', title: "Geo Comprehensiveness", type: "number", width: 70},
-      {name: 'geolevelDensity', title: "Geolevel Density", type: "number", width: 60},
-      {name: 'geolevelConfidence', title: "Geo Confidence", type: "number", width: 60},
-      {name: 'geocoder', title: "Geocoder", type: "text", width: 35}
+      {name: 'country', title: "Country", type: urlFieldName, align: 'left', width: 40},
+      {name: 'tier', title: "Tier", type: "number", align: 'right', width: 18},
+      {name: 'version', title: "Version", type: "text", align: 'right', width: 25},
+      {name: 'density', title: "Geo Density", type: "number", align: 'right', width: 40},
+      {name: 'accuracy', title: "Geo Accuracy", type: accuracyFieldName, align: 'right', width: 45},
+      {name: 'goal', title: "Goal", type: "number", align: 'right', width: 20},
+      {name: 'comprehensiveness', title: "Geo Comprehensiveness", type: "number", align: 'right', width: 70},
+      {name: 'geolevelDensity', title: "Geolevel Density", type: "number", align: 'right', width: 60},
+      {name: 'geolevelConfidence', title: "Geo Confidence", type: "number", align: 'right', width: 60},
+      {name: 'geocoder', title: "Geocoder", type: "text", align: 'center', width: 35}
     ];
   }
 
