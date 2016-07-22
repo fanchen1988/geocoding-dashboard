@@ -18,7 +18,7 @@ class GridLoader {
 
   setInitConfig() {
     this.width = '100%';
-    this.height = '500px';
+    this.height = 'auto';
     this.sorting = true;
     this.autoload = true;
     this.fields = [];

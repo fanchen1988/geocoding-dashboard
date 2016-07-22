@@ -36,7 +36,7 @@ class GeosummarizerGrid extends GridLoader {
         let code = item.countryCode;
         let liveVersion = item.liveVersion;
         let dataset = item.dataset;
-        let btnTag = `<button country-code="${code}" run-version="${liveVersion}" dataset="${dataset}" type="button" class="${btnStyleClass}"`;
+        let btnTag = `<button country-code="${code}" run-version="${liveVersion}" dataset="${dataset}" type="button" class="${btnStyleClass} btn-xs"`;
         if (this.taskRunDisableMapping[item.taskStatus]) {
           btnTag += ' disabled';
         }
