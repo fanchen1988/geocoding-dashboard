@@ -2,6 +2,18 @@ class GridLoader {
 
   constructor() {
     this.setInitConfig();
+    this.setRoundNumField(3);
+  }
+
+  setRoundNumField(digit) {
+    let roundFixed = Math.pow(10, digit);
+    let numFieldName = 'number';
+    let numFieldConfig = {
+      itemTemplate: function(value, item) {
+        return Math.round(value * roundFixed) / roundFixed;
+      }
+    };
+    this.setCustomizedField(numFieldConfig, numFieldName);
   }
 
   setInitConfig() {
