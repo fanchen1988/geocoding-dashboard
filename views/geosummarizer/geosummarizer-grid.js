@@ -55,7 +55,7 @@ class GeosummarizerGrid extends GridLoader {
       { name: 'inputSD', title: "Ideal Input Standard Deviation", type: "number", align: 'right', width: 50 },
       { name: 'inputAccuracy', title: "Input Accuracy", type: "number", align: 'right', width: 30 },
       { name: 'taskId', title: "Current Task", type: taskFieldName, align: 'center', width: 30 },
-      { name: 'liveVersion', title: "Run", type: runFieldName, align: 'center', width: 30 }
+      { name: 'liveVersion', title: "Run", type: runFieldName, align: 'center', sorting: false, width: 30 }
     ];
   }
 
