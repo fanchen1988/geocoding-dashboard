@@ -3,6 +3,7 @@ class GeosummarizerGrid extends GridLoader {
   setInitConfig() {
     super.setInitConfig();
     this.fields = this.getFields();
+    this.vineyardTaskUrlPrefix = 'http://vineyard.prod.factual.com/task/';
   }
 
   getFields() {
@@ -39,7 +40,7 @@ class GeosummarizerGrid extends GridLoader {
         let dataset = $(e.target).attr('dataset');
         let runUrl = this.getRunUrl();
         $.post(runUrl, {countryCode, runVersion, dataset}, (data) => {
-          alert(data);
+          alert(this.vineyardTaskUrlPrefix + data.taskId);
         });
       });
     };

@@ -1,7 +1,7 @@
 import * as path from 'path';
 import {
   getGeosummarizerData, getGeneralDataEachCountry,
-  getRecentGeocodingData, kickOffRun
+  getRecentGeocodingData, kickOffGeoSumRun
 } from '../lib';
 
 const chartUrl = '/chart/';
@@ -94,8 +94,8 @@ export default function (app) {
     switch (source) {
       case 'geosummarizer':
         let data = req.body;
-        kickOffRun(data.countryCode, data.dataset, data.runVersion, (err, taskId) => {
-          res.send(taskId);
+        kickOffGeoSumRun(data.countryCode, data.dataset, data.runVersion, (err, taskId) => {
+          res.send({ taskId });
         });
         break;
       default:
