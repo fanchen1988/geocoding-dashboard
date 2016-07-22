@@ -21,7 +21,7 @@ routesSetup(app);
 
 
 const port = process.env.PORT || 3000;
-app.listen(port, 'localhost', (err) => {
+app.listen(port, (err) => {
   if (err) {
     console.warn(err);
   }
