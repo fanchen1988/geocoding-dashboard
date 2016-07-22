@@ -2,3 +2,6 @@ mongo:
   server: [['localhost', 27017]]
 stitch_api:
   url: 'http://10.20.10.160:3005/'
+vineyard_api:
+  url: 'http://vineyard-api.prod.factual.com'
+  geocoding_channel: 'ryan_test'
