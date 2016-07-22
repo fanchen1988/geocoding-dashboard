@@ -45,8 +45,15 @@ function getComprehensiveDataset(records) {
   return {label, backgroundColor, borderColor, borderWidth, data};
 }
 
-function getOption() {
-  return {scales: {yAxes: [{ticks: {beginAtZero: false}}]}};
+function getOptions(records) {
+  return {
+    scales: {yAxes: [{ticks: {beginAtZero: false}}]},
+    title: {
+      display:true,
+      text: records[0].country,
+      fontSize: 20
+    }
+  };
 }
 
 function loadChart(records) {
@@ -61,7 +68,7 @@ function loadChart(records) {
         getComprehensiveDataset(records)
       ]
     },
-    options: getOption()
+    options: getOptions(records)
   });
 }
 
