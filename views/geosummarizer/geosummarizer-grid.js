@@ -4,20 +4,46 @@ class GeosummarizerGrid extends GridLoader {
     super.setInitConfig();
     this.fields = this.getFields();
     this.vineyardTaskUrlPrefix = 'http://vineyard.prod.factual.com/task/';
+    this.taskRunDisableMapping = {
+      'RUNNING': true,
+      'PENDING': true,
+      'ERROR': false,
+      'DONE': false
+    };
   }
 
   getFields() {
+    let taskFieldName = 'taskField';
+    let taskFieldConfig = {
+      itemTemplate: (value, item) => {
+        let taskId = value;
+        let status = item.taskStatus;
+        if (!taskId) {
+          return null;
+        }
+        let display = status ? status : taskId;
+        let link = this.vineyardTaskUrlPrefix + taskId;
+        return ($('<a href="' + link + '", target="_blank">' + display + '</a>'));
+      }
+    };
+    this.setCustomizedField(taskFieldName, taskFieldConfig);
+
     let runFieldName = 'runField';
     let runFieldConfig = {
-      itemTemplate: function(value, item) {
+      itemTemplate: (value, item) => {
         let btnStyleClass = value === item.version ? 'btn-success' : 'btn-warning';
+        btnStyleClass = `btn ${btnStyleClass} btn-run`;
         let code = item.countryCode;
         let liveVersion = item.liveVersion;
         let dataset = item.dataset;
-        return ($(`<button country-code="${code}" run-version="${liveVersion}" dataset="${dataset}" type="button" class="btn ${btnStyleClass} btn-run">Run for ${value}</button>`));
+        let btnTag = `<button country-code="${code}" run-version="${liveVersion}" dataset="${dataset}" type="button" class="${btnStyleClass}"`;
+        if (this.taskRunDisableMapping[item.taskStatus]) {
+          btnTag += ' disabled';
+        }
+        return ($(`${btnTag}>Run for ${value}</button>`));
       }
     };
-    this.setCustomizedField(runFieldConfig, runFieldName);
+    this.setCustomizedField(runFieldName, runFieldConfig);
 
     return [
       { name: 'countryName', title: "Country", type: "text", align: 'left', width: 32 },
@@ -28,6 +54,7 @@ class GeosummarizerGrid extends GridLoader {
       { name: 'inputRate', title: "Ideal Input Rate", type: "number", align: 'right', width: 35 },
       { name: 'inputSD', title: "Ideal Input Standard Deviation", type: "number", align: 'right', width: 50 },
       { name: 'inputAccuracy', title: "Input Accuracy", type: "number", align: 'right', width: 30 },
+      { name: 'taskId', title: "Current Task", type: taskFieldName, align: 'center', width: 30 },
       { name: 'liveVersion', title: "Run", type: runFieldName, align: 'center', width: 30 }
     ];
   }
@@ -40,7 +67,7 @@ class GeosummarizerGrid extends GridLoader {
         let dataset = $(e.target).attr('dataset');
         let runUrl = this.getRunUrl();
         $.post(runUrl, {countryCode, runVersion, dataset}, (data) => {
-          alert(this.vineyardTaskUrlPrefix + data.taskId);
+          $('#geosummarizerBody').jsGrid('render');
         });
       });
     };
