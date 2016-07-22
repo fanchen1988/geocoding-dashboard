@@ -1,5 +1,8 @@
 import * as path from 'path';
-import {getGeosummarizerData, getGeneralDataEachCountry} from '../lib';
+import {
+  getGeosummarizerData, getGeneralDataEachCountry,
+  getRecentGeocodingData
+} from '../lib';
 
 const chartUrl = '/chart/';
 
@@ -23,16 +26,20 @@ export default function (app) {
     });
   });
 
-  app.get('/chart', (req, res, next) => {
-    res.render('chart-loader');
-  });
-
   app.get('/chart/:countryCode', (req, res, next) => {
-    res.send(req.params.countryCode);
+    let countryCode = req.params.countryCode;
+    let chartDataUrl = getDataUrl(req);
+    res.render('chart-loader', {countryCode, chartDataUrl});
   });
 
   app.get('/chart/:countryCode/data', (req, res, next) => {
-    res.send(req.params.countryCode);
+    getRecentGeocodingData(req.params.countryCode, (err, results) => {
+      if (err) {
+        res.status(404).send(error.toString());
+      } else {
+        res.send(JSON.stringify(results));
+      }
+    });
   });
 
   app.get('/evaluation/:source', (req, res, next) => {
